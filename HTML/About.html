@@ -1,0 +1,1910 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us — Piapi III FLA</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    :root {
+      --ink: #1b1f17;
+      --forest: #1e3d2b;
+      --forest-mid: #2c5c3e;
+      --leaf: #4d8c62;
+      --straw: #f2e8cc;
+      --straw-dim: #e8dab8;
+      --amber: #c8913a;
+      --amber-dim: rgba(200, 145, 58, 0.18);
+      --rust: #b85528;
+      --soil: #7a5c3a;
+      --mist: #f3efe6;
+      --fog: #7a8a70;
+      --white: #fdfaf2;
+      --paper: #f0ebe3;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+      opacity: 0.04;
+      pointer-events: none;
+      z-index: 9000;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, var(--amber) 40%, var(--rust) 70%, transparent 100%);
+      z-index: 9999;
+      pointer-events: none;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Cormorant Garamond', serif;
+      line-height: 1.08;
+    }
+
+    .mono {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--rust);
+    }
+
+    /* ===================== NAV ===================== */
+    nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.4rem 3.5rem;
+      transition: all 0.45s;
+      background: rgba(20, 40, 28, 0.97);
+    }
+
+    nav.scrolled {
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 0.85rem 3.5rem;
+      box-shadow: 0 1px 0 rgba(200, 145, 58, 0.12), 0 8px 40px rgba(0, 0, 0, 0.28);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      text-decoration: none;
+    }
+
+    .nav-seal {
+      width: 38px;
+      height: 38px;
+      border: 1.5px solid rgba(200, 145, 58, 0.5);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: var(--amber);
+      flex-shrink: 0;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .nav-brand:hover .nav-seal {
+      border-color: var(--amber);
+      box-shadow: 0 0 12px rgba(200, 145, 58, 0.2);
+    }
+
+    .nav-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.01em;
+    }
+
+    .nav-name small {
+      display: block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.56rem;
+      letter-spacing: 0.2em;
+      font-weight: 400;
+      color: rgba(200, 145, 58, 0.75);
+      text-transform: uppercase;
+      font-style: normal;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.8rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(253, 250, 242, 0.6);
+      text-decoration: none;
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--amber);
+      transform: scaleX(0);
+      transition: transform 0.25s;
+      transform-origin: left;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--white);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      transform: scaleX(1);
+    }
+
+    .nav-join {
+      border: 1px solid rgba(184, 85, 40, 0.6);
+      color: var(--white) !important;
+      padding: 0.4rem 1.1rem;
+      border-radius: 1px;
+      background: rgba(184, 85, 40, 0.12);
+      transition: background 0.2s, border-color 0.2s !important;
+    }
+
+    .nav-join::after {
+      display: none !important;
+    }
+
+    .nav-join:hover {
+      background: var(--rust) !important;
+      border-color: var(--rust) !important;
+    }
+
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--white);
+      transition: all 0.3s;
+    }
+
+    /* ===================== PAGE HERO ===================== */
+    .page-hero {
+      background: linear-gradient(155deg, #0d1c10 0%, #1e3d2b 55%, #132018 100%);
+      padding: 9rem 3.5rem 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 70% at 80% 50%, rgba(200, 145, 58, 0.09) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 50% at 10% 80%, rgba(184, 85, 40, 0.06) 0%, transparent 55%);
+    }
+
+    .page-hero-circle {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(200, 145, 58, 0.06);
+      pointer-events: none;
+    }
+
+    .page-hero-circle-1 {
+      width: 600px;
+      height: 600px;
+      right: -180px;
+      top: -180px;
+    }
+
+    .page-hero-circle-2 {
+      width: 400px;
+      height: 400px;
+      right: -80px;
+      top: -80px;
+      border-color: rgba(200, 145, 58, 0.04);
+    }
+
+    .page-hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+    }
+
+    .page-hero-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1.8rem;
+      opacity: 0;
+      animation: fadeUp 0.7s forwards 0.2s;
+    }
+
+    .page-hero-breadcrumb a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(200, 145, 58, 0.6);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .page-hero-breadcrumb a:hover {
+      color: var(--amber);
+    }
+
+    .page-hero-breadcrumb span {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      color: rgba(253, 250, 242, 0.2);
+    }
+
+    .page-hero h1 {
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      color: var(--white);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      opacity: 0;
+      animation: fadeUp 0.9s forwards 0.4s;
+    }
+
+    .page-hero h1 em {
+      font-style: italic;
+      color: var(--amber);
+      font-weight: 400;
+    }
+
+    .page-hero-rule {
+      width: 60px;
+      height: 1px;
+      background: rgba(200, 145, 58, 0.35);
+      margin: 2rem 0;
+      opacity: 0;
+      animation: fadeUp 0.8s forwards 0.6s;
+    }
+
+    .page-hero p {
+      font-size: 1.05rem;
+      color: rgba(242, 232, 204, 0.5);
+      max-width: 520px;
+      font-weight: 300;
+      line-height: 1.85;
+      opacity: 0;
+      animation: fadeUp 0.9s forwards 0.75s;
+    }
+
+    /* ===================== SHARED ===================== */
+    .section-pad {
+      padding: 7rem 0;
+    }
+
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 3.5rem;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+
+    .reveal-l {
+      opacity: 0;
+      transform: translateX(-32px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+
+    .reveal-r {
+      opacity: 0;
+      transform: translateX(32px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+
+    .reveal.in,
+    .reveal-l.in,
+    .reveal-r.in {
+      opacity: 1;
+      transform: none;
+    }
+
+    .s-header {
+      text-align: center;
+      margin-bottom: 4.5rem;
+    }
+
+    .s-header h2 {
+      font-size: clamp(2.4rem, 4vw, 3.8rem);
+      color: var(--forest);
+      margin-top: 0.5rem;
+    }
+
+    .s-header p {
+      color: var(--fog);
+      max-width: 460px;
+      margin: 1rem auto 0;
+      font-size: 0.93rem;
+    }
+
+    .s-rule {
+      width: 40px;
+      height: 1px;
+      background: var(--amber);
+      margin: 1.4rem auto 0;
+    }
+
+    /* ===================== STORY ===================== */
+    .story {
+      background: var(--straw);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .story::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(180deg,
+          transparent 0px,
+          transparent 38px,
+          rgba(122, 92, 58, 0.045) 38px,
+          rgba(122, 92, 58, 0.045) 39px),
+        radial-gradient(ellipse 80% 60% at 50% 50%, rgba(200, 145, 58, 0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .story-img-frame {
+      position: relative;
+    }
+
+    .story-img-frame img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      display: block;
+      border-radius: 2px;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 20px 60px rgba(30, 61, 43, 0.15);
+    }
+
+    .story-frame-accent {
+      position: absolute;
+      inset: -12px;
+      border: 1px solid rgba(200, 145, 58, 0.28);
+      border-radius: 2px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .story-badge {
+      position: absolute;
+      z-index: 2;
+      bottom: -1.2rem;
+      right: -1.2rem;
+      background: var(--forest);
+      padding: 1.2rem 1.5rem;
+      border-radius: 2px;
+      box-shadow: 0 10px 30px rgba(30, 61, 43, 0.2);
+    }
+
+    .story-badge .badge-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--amber);
+      line-height: 1;
+      display: block;
+    }
+
+    .story-badge small {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(242, 232, 204, 0.5);
+    }
+
+    .story-text h2 {
+      font-size: clamp(2.2rem, 3.8vw, 3.5rem);
+      color: var(--forest);
+      margin: 0.6rem 0 1.5rem;
+    }
+
+    .story-text p {
+      color: var(--soil);
+      font-size: 0.95rem;
+      margin-bottom: 1.1rem;
+    }
+
+    /* ===================== MISSION BANNER ===================== */
+    .mission-banner {
+      background: var(--forest);
+      padding: 5rem 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mission-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 80% at 80% 50%, rgba(200, 145, 58, 0.07) 0%, transparent 60%);
+    }
+
+    .mission-banner::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(200, 145, 58, 0.3), transparent);
+    }
+
+    .mission-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr 1px 1fr;
+      gap: 3rem;
+      align-items: center;
+      position: relative;
+    }
+
+    .mission-divider {
+      background: rgba(200, 145, 58, 0.15);
+      align-self: stretch;
+    }
+
+    .mission-item {
+      text-align: center;
+    }
+
+    .mission-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+
+    .mission-item h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      color: var(--white);
+      margin-bottom: 0.4rem;
+    }
+
+    .mission-item p {
+      font-size: 0.82rem;
+      color: rgba(242, 232, 204, 0.45);
+      line-height: 1.75;
+    }
+
+    /* ===================== VALUES ===================== */
+    .values {
+      background: var(--paper);
+      position: relative;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: var(--straw-dim);
+      border: 1.5px solid var(--straw-dim);
+      position: relative;
+      z-index: 1;
+    }
+
+    .val-card {
+      background: var(--paper);
+      padding: 2.8rem 2.2rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: default;
+    }
+
+    .val-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 0;
+      background: var(--amber);
+      transition: height 0.35s;
+    }
+
+    .val-card:hover {
+      background: var(--forest);
+    }
+
+    .val-card:hover::before {
+      height: 100%;
+    }
+
+    .val-card:hover .val-icon {
+      background: rgba(200, 145, 58, 0.1);
+      color: var(--amber);
+    }
+
+    .val-card:hover h3 {
+      color: var(--white);
+    }
+
+    .val-card:hover p {
+      color: rgba(242, 232, 204, 0.45);
+    }
+
+    .val-card:hover .val-num {
+      color: rgba(255, 255, 255, 0.03);
+    }
+
+    .val-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--straw);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      margin-bottom: 1.4rem;
+      transition: all 0.35s;
+    }
+
+    .val-card h3 {
+      font-size: 1.3rem;
+      color: var(--forest);
+      margin-bottom: 0.55rem;
+      transition: color 0.35s;
+    }
+
+    .val-card p {
+      color: var(--fog);
+      font-size: 0.85rem;
+      line-height: 1.75;
+      transition: color 0.35s;
+    }
+
+    .val-num {
+      position: absolute;
+      bottom: -0.5rem;
+      right: 0.8rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5.5rem;
+      font-weight: 700;
+      color: rgba(30, 61, 43, 0.04);
+      line-height: 1;
+      user-select: none;
+      transition: color 0.35s;
+    }
+
+    /* ===================== LEADERSHIP ===================== */
+    .leadership {
+      background: var(--straw);
+      position: relative;
+    }
+
+    .leadership::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(135deg,
+          transparent 0px,
+          transparent 28px,
+          rgba(122, 92, 58, 0.03) 28px,
+          rgba(122, 92, 58, 0.03) 29px),
+        radial-gradient(ellipse 50% 70% at 0% 100%, rgba(200, 145, 58, 0.06) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 70% at 100% 0%, rgba(200, 145, 58, 0.04) 0%, transparent 55%);
+      pointer-events: none;
+    }
+
+    .leadership-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      align-items: start;
+      position: relative;
+      z-index: 1;
+    }
+
+    .leader-card {
+      background: var(--white);
+      border-radius: 2px;
+      overflow: hidden;
+      box-shadow: 0 2px 18px rgba(30, 61, 43, 0.06);
+      transition: box-shadow 0.45s cubic-bezier(0.4, 0, 0.2, 1), transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid rgba(200, 145, 58, 0.08);
+    }
+
+    .leader-card:hover {
+      box-shadow: 0 20px 55px rgba(30, 61, 43, 0.13);
+      transform: translateY(-4px);
+    }
+
+    .leader-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      filter: saturate(0.72) brightness(0.9);
+      transition: filter 0.55s;
+    }
+
+    .leader-card:hover .leader-img {
+      filter: saturate(1) brightness(1);
+    }
+
+    .leader-body {
+      padding: 1.6rem;
+    }
+
+    .leader-role {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--rust);
+      background: rgba(184, 85, 40, 0.07);
+      padding: 0.22rem 0.6rem;
+      border-radius: 1rem;
+      display: inline-block;
+      margin-bottom: 0.7rem;
+    }
+
+    .leader-body h3 {
+      font-size: 1.25rem;
+      color: var(--forest);
+      margin-bottom: 0.25rem;
+    }
+
+    .leader-body p {
+      color: var(--fog);
+      font-size: 0.83rem;
+    }
+
+    /* ===================== TIMELINE ===================== */
+    .timeline {
+      background: var(--paper);
+      position: relative;
+    }
+
+    .timeline-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .timeline-inner::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--amber) 10%, var(--amber) 90%, transparent);
+      opacity: 0.25;
+    }
+
+    .tl-item {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 2rem;
+      margin-bottom: 3.5rem;
+      position: relative;
+    }
+
+    .tl-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .tl-year {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--amber);
+      line-height: 1;
+      padding-top: 0.1rem;
+      text-align: right;
+      position: relative;
+    }
+
+    .tl-year::after {
+      content: '';
+      position: absolute;
+      right: -2rem;
+      top: 0.5rem;
+      width: 8px;
+      height: 8px;
+      border: 1.5px solid var(--amber);
+      border-radius: 50%;
+      background: var(--paper);
+      left: calc(100% + 12px);
+      right: auto;
+    }
+
+    .tl-body h3 {
+      font-size: 1.2rem;
+      color: var(--forest);
+      margin-bottom: 0.4rem;
+    }
+
+    .tl-body p {
+      color: var(--soil);
+      font-size: 0.88rem;
+      line-height: 1.75;
+    }
+
+    /* ===================== CTA ===================== */
+    .cta-section {
+      background: var(--rust);
+      padding: 7rem 3.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 10% 50%, rgba(255, 255, 255, 0.06) 0%, transparent 45%),
+        radial-gradient(circle at 90% 50%, rgba(0, 0, 0, 0.14) 0%, transparent 45%);
+    }
+
+    .cta-section::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 1px;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .cta-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .cta-inner h2 {
+      font-size: clamp(2.5rem, 5vw, 4.2rem);
+      color: var(--white);
+      margin: 0.5rem 0 0.9rem;
+    }
+
+    .cta-inner p {
+      color: rgba(253, 250, 242, 0.6);
+      font-size: 0.95rem;
+      margin-bottom: 2.5rem;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-btns {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .btn-cream {
+      background: var(--straw);
+      color: var(--rust);
+      padding: 0.9rem 2.5rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 1px;
+      cursor: pointer;
+      transition: background 0.22s, transform 0.22s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .btn-cream:hover {
+      background: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .btn-cream-ghost {
+      background: transparent;
+      color: var(--white);
+      padding: 0.9rem 2.5rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: 1.5px solid rgba(253, 250, 242, 0.4);
+      border-radius: 1px;
+      cursor: pointer;
+      transition: border-color 0.22s, transform 0.22s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .btn-cream-ghost:hover {
+      border-color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--rust);
+      color: var(--white);
+      padding: 0.85rem 2.2rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: #9a3510;
+      transform: translateY(-2px);
+    }
+
+    /* ===================== CONTACT & FOOTER ===================== */
+    .contact-section {
+      background: #0d1810;
+      padding: 6rem 3.5rem 4rem;
+      position: relative;
+    }
+
+    .contact-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 4.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .c-brand h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.85rem;
+      color: var(--white);
+      margin-bottom: 0.8rem;
+    }
+
+    .c-brand p {
+      color: rgba(242, 232, 204, 0.3);
+      font-size: 0.84rem;
+      line-height: 1.8;
+      max-width: 280px;
+    }
+
+    .c-brand .c-logo-row {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 1rem;
+    }
+
+    .c-logo-row .c-seal {
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(200, 145, 58, 0.35);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: var(--amber);
+    }
+
+    .c-col h4 {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 1.4rem;
+    }
+
+    .c-col ul {
+      list-style: none;
+    }
+
+    .c-col ul li {
+      margin-bottom: 0.65rem;
+    }
+
+    .c-col ul a {
+      color: rgba(242, 232, 204, 0.32);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+
+    .c-col ul a:hover {
+      color: var(--white);
+    }
+
+    .c-info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      margin-bottom: 0.9rem;
+      color: rgba(242, 232, 204, 0.32);
+      font-size: 0.83rem;
+    }
+
+    .c-info-icon {
+      color: var(--amber);
+      flex-shrink: 0;
+    }
+
+    .footer-bar {
+      background: #090f08;
+      padding: 1.4rem 3.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .footer-bar p {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      color: rgba(242, 232, 204, 0.18);
+    }
+
+    .footer-tag {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(242, 232, 204, 0.15);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+    }
+
+    .footer-tag::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(200, 145, 58, 0.28);
+    }
+
+    /* ===================== MOBILE NAV ===================== */
+    .mobile-nav {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+      pointer-events: none;
+    }
+
+    .mobile-nav.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .mobile-nav-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(165deg, #0f2418 0%, #1e3d2b 40%, #162e20 70%, #0d1810 100%);
+      z-index: 0;
+    }
+
+    .mobile-nav-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 15% 85%, rgba(200, 145, 58, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 85% 15%, rgba(184, 85, 40, 0.08) 0%, transparent 50%);
+    }
+
+    .mobile-nav-arc {
+      position: absolute;
+      right: -15%;
+      bottom: -20%;
+      width: 80%;
+      height: 90%;
+      border-radius: 50%;
+      border: 1px solid rgba(200, 145, 58, 0.07);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .mobile-nav-arc-2 {
+      position: absolute;
+      left: -10%;
+      top: -15%;
+      width: 55%;
+      height: 70%;
+      border-radius: 50%;
+      border: 1px solid rgba(200, 145, 58, 0.04);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .mobile-nav-line {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, var(--amber) 40%, var(--rust) 70%, transparent 100%);
+      z-index: 1;
+    }
+
+    .mobile-close {
+      position: absolute;
+      top: 1.4rem;
+      right: 1.5rem;
+      z-index: 10;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: 1px solid rgba(200, 145, 58, 0.25);
+      border-radius: 50%;
+      color: var(--white);
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: border-color 0.25s, background 0.25s, transform 0.25s;
+    }
+
+    .mobile-close:hover {
+      border-color: var(--amber);
+      background: rgba(200, 145, 58, 0.08);
+      transform: rotate(90deg);
+    }
+
+    .mobile-nav-brand {
+      position: relative;
+      z-index: 1;
+      padding: 3.5rem 2rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+    }
+
+    .mobile-nav-seal {
+      width: 42px;
+      height: 42px;
+      border: 1.5px solid rgba(200, 145, 58, 0.4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: var(--amber);
+      flex-shrink: 0;
+    }
+
+    .mobile-nav-brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mobile-nav-brand-text strong {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.2;
+    }
+
+    .mobile-nav-brand-text span {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(200, 145, 58, 0.6);
+    }
+
+    .mobile-nav-links {
+      position: relative;
+      z-index: 1;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2rem 2.5rem;
+      gap: 0.2rem;
+    }
+
+    .mobile-nav-links a {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: rgba(253, 250, 242, 0.35);
+      text-decoration: none;
+      transition: color 0.3s, transform 0.3s, padding-left 0.3s;
+      padding: 0.4rem 0;
+      position: relative;
+      display: block;
+    }
+
+    .mobile-nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--amber);
+      transition: width 0.35s ease;
+    }
+
+    .mobile-nav.open .mobile-nav-links a {
+      animation: mobileLinkIn 0.5s ease forwards;
+    }
+
+    .mobile-nav.open .mobile-nav-links a:nth-child(1) {
+      animation-delay: 0.08s;
+    }
+
+    .mobile-nav.open .mobile-nav-links a:nth-child(2) {
+      animation-delay: 0.14s;
+    }
+
+    .mobile-nav.open .mobile-nav-links a:nth-child(3) {
+      animation-delay: 0.20s;
+    }
+
+    .mobile-nav.open .mobile-nav-links a:nth-child(4) {
+      animation-delay: 0.26s;
+    }
+
+    .mobile-nav.open .mobile-nav-links a:nth-child(5) {
+      animation-delay: 0.32s;
+    }
+
+    .mobile-nav-links a:hover {
+      color: var(--white);
+      padding-left: 0.6rem;
+    }
+
+    .mobile-nav-links a:hover::after {
+      width: 40px;
+    }
+
+    .mobile-nav-links a .nav-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.15em;
+      color: rgba(200, 145, 58, 0.3);
+      margin-right: 1rem;
+      position: relative;
+      top: -0.15em;
+    }
+
+    .mobile-nav-links a:hover .nav-num {
+      color: rgba(200, 145, 58, 0.7);
+    }
+
+    .mobile-nav-bottom {
+      position: relative;
+      z-index: 1;
+      padding: 0 2rem 2.5rem;
+      border-top: 1px solid rgba(200, 145, 58, 0.1);
+    }
+
+    .mobile-nav-bottom-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1.8rem;
+    }
+
+    .mobile-nav-loc {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(242, 232, 204, 0.25);
+      line-height: 1.6;
+    }
+
+    .mobile-nav-loc strong {
+      display: block;
+      font-size: 0.62rem;
+      color: rgba(242, 232, 204, 0.4);
+      font-weight: 400;
+    }
+
+    .mobile-nav-join-btn {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--rust);
+      border: none;
+      padding: 0.65rem 1.6rem;
+      border-radius: 1px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .mobile-nav-join-btn:hover {
+      background: #9a3510;
+      transform: translateY(-1px);
+    }
+
+    /* ===================== SCROLL TO TOP ===================== */
+    #scrollTop {
+      position: fixed;
+      bottom: 2.5rem;
+      right: 2.5rem;
+      z-index: 500;
+      width: 46px;
+      height: 46px;
+      background: var(--forest);
+      border: 1px solid rgba(200, 145, 58, 0.35);
+      border-radius: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.35s, transform 0.35s, background 0.22s, border-color 0.22s;
+      pointer-events: none;
+    }
+
+    #scrollTop.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    #scrollTop:hover {
+      background: var(--forest-mid);
+      border-color: var(--amber);
+    }
+
+    #scrollTop svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--amber);
+      stroke-width: 2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: transform 0.22s;
+    }
+
+    #scrollTop:hover svg {
+      transform: translateY(-2px);
+    }
+
+    /* ===================== KEYFRAMES ===================== */
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @keyframes mobileLinkIn {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* ===================== RESPONSIVE ===================== */
+    @media (max-width: 900px) {
+      nav {
+        padding: 1.2rem 1.5rem;
+      }
+
+      nav.scrolled {
+        padding: 0.8rem 1.5rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .page-hero {
+        padding: 8rem 1.5rem 5rem;
+      }
+
+      .story-grid {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+      }
+
+      .story-badge {
+        bottom: -1rem;
+        right: -0.5rem;
+      }
+
+      .values-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .leadership-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .mission-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .mission-divider {
+        display: none;
+      }
+
+      .tl-item {
+        grid-template-columns: 60px 1fr;
+        gap: 1.5rem;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .footer-bar {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+      }
+
+      .wrap {
+        padding: 0 1.5rem;
+      }
+
+      .cta-btns {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .section-pad {
+        padding: 5rem 0;
+      }
+
+      #scrollTop {
+        bottom: 1.5rem;
+        right: 1.5rem;
+      }
+
+      .mission-banner {
+        padding: 3.5rem 1.5rem;
+      }
+
+      .cta-section {
+        padding: 5rem 1.5rem;
+      }
+
+      .contact-section {
+        padding: 4rem 1.5rem 3rem;
+      }
+
+      .footer-bar {
+        padding: 1.2rem 1.5rem;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .leadership-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-name {
+        font-size: 0.85rem;
+      }
+
+      .mobile-nav-links a {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="Homepage.html" class="nav-brand">
+      <div class="nav-seal">🌾</div>
+      <div class="nav-name" style="font-size: 1.3rem;">
+        Farmer and Laborers Association of Barangay Piapi III
+        <small>Hamtic · Antique</small>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="Homepage.html">Home</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="programs.html">Programs</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="Member.html" class="nav-join">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE NAV -->
+  <div class="mobile-nav" id="mobileNav">
+    <div class="mobile-nav-bg"></div>
+    <div class="mobile-nav-arc"></div>
+    <div class="mobile-nav-arc-2"></div>
+    <div class="mobile-nav-line"></div>
+
+    <button class="mobile-close" id="mobileClose" aria-label="Close menu">✕</button>
+
+    <div class="mobile-nav-brand">
+      <div class="mobile-nav-seal">🌾</div>
+      <div class="mobile-nav-brand-text">
+        <strong>Piapi III FLA</strong>
+        <span>Hamtic · Antique</span>
+      </div>
+    </div>
+
+    <div class="mobile-nav-links">
+      <a href="Homepage.html" onclick="closeMobileNav()"><span class="nav-num">01</span>Home</a>
+      <a href="about.html" onclick="closeMobileNav()"><span class="nav-num">02</span>About</a>
+      <a href="programs.html" onclick="closeMobileNav()"><span class="nav-num">03</span>Programs</a>
+      <a href="events.html" onclick="closeMobileNav()"><span class="nav-num">04</span>Events</a>
+      <a href="Member.html#contact" onclick="closeMobileNav()"><span class="nav-num">05</span>Contact</a>
+    </div>
+
+    <div class="mobile-nav-bottom">
+      <div class="mobile-nav-bottom-inner">
+        <div class="mobile-nav-loc">
+          <strong>Barangay Piapi III</strong>
+          Hamtic, Antique, Philippines
+        </div>
+        <a href="Member.html#contact" class="mobile-nav-join-btn" onclick="closeMobileNav()">Join Us</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCROLL TO TOP -->
+  <button id="scrollTop" aria-label="Back to top" title="Back to top"
+    onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg viewBox="0 0 24 24">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="page-hero-circle page-hero-circle-1"></div>
+    <div class="page-hero-circle page-hero-circle-2"></div>
+    <div class="page-hero-content">
+      <div class="page-hero-breadcrumb">
+        <a href="Homepage.html">Home</a>
+        <span>/</span>
+        <span
+          style="color:rgba(253,250,242,0.4);font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;">About
+          Us</span>
+      </div>
+      <h1>Who <em>We Are</em></h1>
+      <div class="page-hero-rule"></div>
+      <p>A barangay association rooted in the soil of Piapi III, united by shared labor, mutual trust, and a commitment
+        to the people of Hamtic, Antique.</p>
+    </div>
+  </section>
+
+  <!-- OUR STORY -->
+  <section class="story section-pad">
+    <div class="wrap">
+      <div class="story-grid">
+        <div class="story-img-frame reveal-l">
+          <div class="story-frame-accent"></div>
+          <img src="../images/farm.webp" alt="Farmers of Piapi III" />
+          <div class="story-badge">
+            <span class="badge-num">2012</span>
+            <small>Founded</small>
+          </div>
+        </div>
+        <div class="story-text reveal-r">
+          <span class="tag">Our Story</span>
+          <h2>A Community<br />Built by Hand</h2>
+          <p>We are farmers and laborers working the same land, facing the same seasons. This association exists so no
+            one faces them alone.</p>
+          <p>Piapi III has always been a place where neighbors help neighbors — sharing tools, sharing labor, and
+            looking out for one another through good harvests and hard ones.</p>
+          <p>We formed this association to make that support official. To give it structure, a name, and a place at the
+            table when decisions are made.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION / VALUES BANNER -->
+  <div class="mission-banner">
+    <div class="mission-inner">
+      <div class="mission-item reveal">
+        <span class="mission-icon">🤝</span>
+        <h4>Unity</h4>
+        <p>We work better together than apart. What one member carries, the group helps shoulder.</p>
+      </div>
+      <div class="mission-divider"></div>
+      <div class="mission-item reveal" style="transition-delay:0.15s">
+        <span class="mission-icon">⚖️</span>
+        <h4>Fairness</h4>
+        <p>Decisions are made with all members in mind. Every voice in the association has weight.</p>
+      </div>
+      <div class="mission-divider"></div>
+      <div class="mission-item reveal" style="transition-delay:0.3s">
+        <span class="mission-icon">🌱</span>
+        <h4>Sustainability</h4>
+        <p>We take care of the land because the land takes care of us. What we plant today, our children will harvest.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CORE VALUES -->
+  <section class="values section-pad">
+    <div class="wrap">
+      <div class="s-header reveal">
+        <span class="tag">What Guides Us</span>
+        <h2>Our Core Values</h2>
+        <p>The principles that shape every decision we make and every program we run.</p>
+        <div class="s-rule"></div>
+      </div>
+      <div class="values-grid">
+        <div class="val-card reveal" style="transition-delay:0.05s">
+          <div class="val-icon">🌾</div>
+          <h3>Stewardship of the Land</h3>
+          <p>The land is not just a resource — it is what connects us. We treat it with care and pass it on in better
+            shape than we found it.</p>
+          <div class="val-num">01</div>
+        </div>
+        <div class="val-card reveal" style="transition-delay:0.12s">
+          <div class="val-icon">🤲</div>
+          <h3>Mutual Aid</h3>
+          <p>When one member struggles, the rest take notice. Support flows both ways — no one is expected to give
+            without also being able to receive.</p>
+          <div class="val-num">02</div>
+        </div>
+        <div class="val-card reveal" style="transition-delay:0.19s">
+          <div class="val-icon">📋</div>
+          <h3>Transparency</h3>
+          <p>Members have a right to know how the association is run, how resources are used, and what decisions are
+            being made on their behalf.</p>
+          <div class="val-num">03</div>
+        </div>
+        <div class="val-card reveal" style="transition-delay:0.26s">
+          <div class="val-icon">🏘️</div>
+          <h3>Community First</h3>
+          <p>Every program, every decision, every effort begins with the same question: does this serve the people of
+            Piapi III?</p>
+          <div class="val-num">04</div>
+        </div>
+        <div class="val-card reveal" style="transition-delay:0.33s">
+          <div class="val-icon">📚</div>
+          <h3>Continuous Learning</h3>
+          <p>Better farming, better governance, better lives — these come from staying open to new knowledge and sharing
+            it freely among members.</p>
+          <div class="val-num">05</div>
+        </div>
+        <div class="val-card reveal" style="transition-delay:0.4s">
+          <div class="val-icon">⚖️</div>
+          <h3>Equity & Inclusion</h3>
+          <p>The association is for all farmers and laborers in the barangay, regardless of the size of their land or
+            the scale of their work.</p>
+          <div class="val-num">06</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEADERSHIP -->
+  <section class="leadership section-pad">
+    <div class="wrap">
+      <div class="s-header reveal">
+        <span class="tag">Who Leads Us</span>
+        <h2>Our Officers</h2>
+        <p>Elected members of the community who serve the association with dedication and accountability.</p>
+        <div class="s-rule"></div>
+      </div>
+      <div class="leadership-grid">
+        <div class="leader-card reveal-l">
+          <img src="../images/President.webp" alt="President" class="leader-img" />
+          <div class="leader-body">
+            <span class="leader-role">President</span>
+            <h3>Ferdinand C. Gumia</h3>
+            <p>Elected by the members to lead the association and represent Piapi III in matters of governance and
+              coordination.</p>
+          </div>
+        </div>
+        <div class="leader-card reveal" style="transition-delay:0.1s">
+          <img src="../images/Vice.webp" alt="Vice President" class="leader-img" />
+          <div class="leader-body">
+            <span class="leader-role">Vice President</span>
+            <h3>Jovany P. Lorete</h3>
+            <p>Supports the president and steps in when needed. Responsible for coordinating among committees and
+              members.</p>
+          </div>
+        </div>
+        <div class="leader-card reveal-r">
+          <img src="../images/Secretary.webp" alt="Secretary" class="leader-img" />
+          <div class="leader-body">
+            <span class="leader-role">Secretary</span>
+            <h3>Maria Corazon A. Sumaculub</h3>
+            <p>Keeps records, manages correspondence, and oversees the association's funds with accountability to all
+              members.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HISTORY TIMELINE -->
+  <section class="timeline section-pad">
+    <div class="wrap">
+      <div class="s-header reveal">
+        <span class="tag">Our Journey</span>
+        <h2>A Brief History</h2>
+        <p>Key milestones in the life of the association.</p>
+        <div class="s-rule"></div>
+      </div>
+      <div class="timeline-inner">
+        <div class="tl-item reveal">
+          <div class="tl-year">2012</div>
+          <div class="tl-body">
+            <h3>Association Founded</h3>
+            <p>Farmers and laborers of Piapi III came together to formally establish the association — putting structure
+              behind what the community had always done informally.</p>
+          </div>
+        </div>
+        <div class="tl-item reveal" style="transition-delay:0.1s">
+          <div class="tl-year">2014</div>
+          <div class="tl-body">
+            <h3>First Farm Input Program</h3>
+            <p>The association coordinated its first collective access to seeds and materials, making resources
+              available to members at the start of the planting season.</p>
+          </div>
+        </div>
+        <div class="tl-item reveal" style="transition-delay:0.2s">
+          <div class="tl-year">2018</div>
+          <div class="tl-body">
+            <h3>LGU Partnership Established</h3>
+            <p>A working relationship with the local government unit was formalized, opening doors to training programs,
+              assistance, and wider recognition of the association.</p>
+          </div>
+        </div>
+        <div class="tl-item reveal" style="transition-delay:0.3s">
+          <div class="tl-year">2023</div>
+          <div class="tl-body">
+            <h3>Skills Training Program Launch</h3>
+            <p>Members began participating in DA-assisted training sessions, bringing new knowledge in crop management
+              and sustainable practices back to the barangay.</p>
+          </div>
+        </div>
+        <div class="tl-item reveal" style="transition-delay:0.4s">
+          <div class="tl-year">2025</div>
+          <div class="tl-body">
+            <h3>Digital Records & New Officers</h3>
+            <p>A new set of officers was elected by the membership, carrying the association forward with fresh energy
+              and a commitment to transparency and growth.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-inner reveal">
+      <span class="mono" style="color:rgba(253,250,242,0.45);display:block;margin-bottom:0.5rem">Be Part of Something
+        Bigger</span>
+      <h2>Join Our Association</h2>
+      <p>If you live and work in Piapi III, there is a place for you here. Membership is open to farmers and laborers in
+        the barangay.</p>
+      <div class="cta-btns">
+        <a href="Member.html#contact" class="btn-cream">Become a Member</a>
+        <a href="programs.html" class="btn-cream-ghost">Our Programs</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT / FOOTER -->
+  <section class="contact-section" id="contact">
+    <div class="contact-grid">
+      <div class="c-brand reveal">
+        <div class="c-logo-row">
+          <div class="c-seal">🌾</div>
+        </div>
+        <h3>Farmer and Laborers Association of Barangay Piapi III</h3>
+        <p>The Farmers and Laborers Association of Barangay Piapi III, Hamtic, Antique. A community rooted in the land,
+          committed to its people.</p>
+      </div>
+      <div class="c-col reveal" style="transition-delay:0.1s">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="Homepage.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="programs.html">Our Programs</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="Member.html#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="c-col reveal" style="transition-delay:0.2s">
+        <h4>Location & Contact</h4>
+        <div class="c-info-item">
+          <span class="c-info-icon">📍</span>
+          <span>Barangay Piapi III, Hamtic, Antique, Philippines</span>
+        </div>
+        <div class="c-info-item">
+          <span class="c-info-icon">🏛️</span>
+          <span>For inquiries, please approach the Barangay Hall or the Association Officers directly.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer-bar">
+    <p>© 2026 Piapi III Farmers &amp; Laborers Association — Hamtic, Antique, Philippines</p>
+    <div class="footer-tag">Serving our community</div>
+  </footer>
+
+  <script>
+    // Nav scroll state
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    // Mobile nav
+    const mobileNav = document.getElementById('mobileNav');
+
+    document.getElementById('hamburger').addEventListener('click', () => {
+      mobileNav.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+
+    function closeMobileNav() {
+      mobileNav.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('mobileClose').addEventListener('click', closeMobileNav);
+
+    // Scroll reveal
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal, .reveal-l, .reveal-r').forEach(el => revealObs.observe(el));
+
+    // Scroll to top
+    const scrollTopBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+      scrollTopBtn.classList.toggle('visible', window.scrollY > 500);
+    }, { passive: true });
+  </script>
+</body>
+
+</html>
